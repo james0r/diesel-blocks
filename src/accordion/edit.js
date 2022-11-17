@@ -1,38 +1,46 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
+import { useBlockProps, InnerBlocks, InspectorControls } from '@wordpress/block-editor'
+import { PanelBody, ToggleControl } from '@wordpress/components'
+import { __ } from '@wordpress/i18n'
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
+export default function Edit({ attributes, setAttributes }) {
+  const ALLOWED_BLOCKS = ['diesel-blocks/accordion-item']
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
+  const { firstItemInitiallyOpen, oneItemOpen } = attributes
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {WPElement} Element to render.
- */
-export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Accordion – hello from the editor!', 'accordion' ) }
-		</p>
-	);
+  const onChangeFirstItemInitiallyOpen = (newValue) => {
+    setAttributes({ firstItemInitiallyOpen: newValue })
+  }
+
+  const onChangeOneItemOpen = (newValue) => {
+    setAttributes({ oneItemOpen: newValue })
+  }
+
+  return (
+    <>
+      <InspectorControls>
+        <PanelBody
+          title={__('Accordion Behavior', 'diesel')}
+          icon="hammer"
+          initialOpen
+        >
+          <ToggleControl
+            label={__('First item initially open', 'diesel')}
+            checked={firstItemInitiallyOpen}
+            onChange={onChangeFirstItemInitiallyOpen}
+          ></ToggleControl>
+          <ToggleControl
+            label={__('One item open at a time', 'diesel')}
+            checked={oneItemOpen}
+            onChange={onChangeOneItemOpen}
+          ></ToggleControl>
+        </PanelBody>
+      </InspectorControls>
+      <div {...useBlockProps({
+        'data-first-item-initially-open': firstItemInitiallyOpen,
+        'data-one-item-open': oneItemOpen
+      })}>
+        <InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
+      </div>
+    </>
+  )
 }

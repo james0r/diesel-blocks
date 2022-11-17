@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       Diesel Blocks
  * Description:       Example block scaffolded with Create Block tool.
@@ -13,16 +14,24 @@
  * @package           create-block
  */
 
-add_filter( 'block_categories_all' , function( $categories ) {
+/**
+* If you then also specify a filter that will only load the blocks assets when the block is actually used:
+*/
+add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+
+/**
+* Register our custom Diesel category.
+*/
+add_filter('block_categories_all', function ($categories) {
 
   // Adding a new category.
-$categories[] = array(
-  'slug'  => 'diesel-blocks',
-  'title' => 'Diesel Blocks'
-);
+  $categories[] = array(
+    'slug'  => 'diesel-blocks',
+    'title' => 'Diesel Blocks'
+  );
 
-return $categories;
-} );
+  return $categories;
+});
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -32,6 +41,7 @@ return $categories;
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_diesel_blocks_block_init() {
-	register_block_type( __DIR__ . '/build/accordion' );
+  register_block_type(__DIR__ . '/build/accordion');
+  register_block_type(__DIR__ . '/build/accordion-item');
 }
-add_action( 'init', 'create_block_diesel_blocks_block_init' );
+add_action('init', 'create_block_diesel_blocks_block_init');

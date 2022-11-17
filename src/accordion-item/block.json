@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "diesel-blocks/accordion",
+	"name": "diesel-blocks/accordion-item",
 	"version": "0.1.0",
-	"title": "Accordion",
+	"title": "Accordion Item",
 	"category": "diesel-blocks",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -14,14 +14,22 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
+  "render": "file:./index.php",
   "attributes": {
-    "firstItemInitiallyOpen": {
-      "type": "boolean",
-      "default": false
+    "headingText": {
+      "type": "string"
     },
-    "oneItemOpen": {
-      "type": "boolean",
-      "default": false
+    "panelText": {
+      "type": "string"
+    },
+    "editorId": {
+      "type": "string"
+    },
+    "itemIndex": {
+      "type": "number"
+    },
+    "parentAttributes": {
+      "type": "object"
     }
   }
 }
