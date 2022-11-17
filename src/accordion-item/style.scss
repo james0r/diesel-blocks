@@ -5,8 +5,25 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-// .wp-block-diesel-accordion-item {
-// 	background-color: #21759b;
-// 	color: #fff;
-// 	padding: 2px;
-// }
+.wp-block-diesel-blocks-accordion-item {
+  border: 1px solid lightgray;
+  padding: 1rem;
+  overflow: hidden;
+
+  &__heading {
+    overflow: hidden;
+    margin: 0;
+  }
+
+  &__panel {
+    overflow: hidden;
+
+    &--inner {
+      padding-top: 1rem;
+    }
+
+    & > *:last-child {
+      margin-bottom: 0px !important;
+    }
+  }
+}

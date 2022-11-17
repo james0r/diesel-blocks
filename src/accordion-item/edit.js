@@ -4,6 +4,7 @@ import { useSelect } from '@wordpress/data'
 
 export default function Edit({ attributes, setAttributes, clientId }) {
   const { headingText, panelText, id } = attributes
+  const ALLOWED_PANEL_BLOCKS = ['core/paragraph']
 
   const onChangeHeadingText = (newValue) => {
     setAttributes({ headingText: newValue })
@@ -47,12 +48,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
           onChange={onChangeHeadingText}
           value={headingText}
         />
-        <RichText
+        {/* <RichText
           tagName="div"
           placeholder={__('Some panel text...')}
           onChange={onChangePanelText}
           value={panelText}
-        />
+        /> */}
+        <InnerBlocks allowedBlocks={ALLOWED_PANEL_BLOCKS} />
       </div>
     </>
   )

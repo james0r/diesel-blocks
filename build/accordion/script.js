@@ -1,0 +1,1 @@
+window.addEventListener("DOMContentLoaded",(()=>{if(null==window.Alpine){const e=document.createElement("script"),n=document.createElement("script");e.src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js",e.defer="defer",document.body.appendChild(e),n.src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js",n.defer="defer",document.body.appendChild(n)}}));
